@@ -34,10 +34,6 @@ public class Post {
     @JoinColumn(name = "ratingId")
     private Rating rating;
 
-    public Post(){
-
-    }
-
     public Long getPostId() {
         return postId;
     }
