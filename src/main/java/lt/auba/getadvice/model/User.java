@@ -28,8 +28,8 @@ public class User {
     @JsonManagedReference
     private Set<Comment> userComment;
 
-    @OneToOne
-    @MapsId
+    @OneToOne(fetch = FetchType.LAZY)
+//    @MapsId
     @JoinColumn(name = "roleId")
     private Role userRole;
 

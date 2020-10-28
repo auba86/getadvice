@@ -30,7 +30,7 @@ public class Post {
     private User userPost;
 
     @OneToOne
-    @MapsId
+//    @MapsId
     @JoinColumn(name = "ratingId")
     private Rating rating;
 
