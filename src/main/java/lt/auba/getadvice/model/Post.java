@@ -18,7 +18,7 @@ public class Post {
 
     private String description;
 
-    private Date postDate;
+//    private Date postDate;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     @JsonManagedReference
@@ -58,13 +58,13 @@ public class Post {
         this.description = description;
     }
 
-    public Date getPostDate() {
-        return postDate;
-    }
-
-    public void setPostDate(Date postDate) {
-        this.postDate = postDate;
-    }
+//    public Date getPostDate() {
+//        return postDate;
+//    }
+//
+//    public void setPostDate(Date postDate) {
+//        this.postDate = postDate;
+//    }
 
     public Set<Comment> getComments() {
         return comments;

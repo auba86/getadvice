@@ -23,7 +23,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/usersList")
+    @GetMapping("usersList")
     public String viewUserList(Model model) {
         List<User> usersList = userService.getAllUsers();
         model.addAttribute("usersList", usersList);
@@ -36,6 +36,21 @@ public class UserController {
         User user = new User();
         model.addAttribute("user", user);
         return "create_user";
+    }
+
+    @GetMapping("/showUserLoginForm")
+    public String showLoginForm(Model model) {
+        //create model attribute to bind form data
+        User user = new User();
+        model.addAttribute("user", user);
+        return "login";
+    }
+
+    @GetMapping("/showAdminPage")
+    public String showAdminPage(Model model){
+        List<User> usersList = userService.getAllUsers();
+        model.addAttribute("usersList", usersList);
+        return "admin";
     }
 
     @PostMapping("/saveNewUser")

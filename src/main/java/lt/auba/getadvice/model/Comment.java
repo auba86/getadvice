@@ -3,6 +3,7 @@ package lt.auba.getadvice.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Comment {
@@ -12,6 +13,8 @@ public class Comment {
     private Long commentId;
 
     private String description;
+
+//    private Date commentDate;
 
     @ManyToOne
     @JoinColumn(name="postId", nullable=false)
@@ -38,6 +41,14 @@ public class Comment {
     public void setDescription(String description) {
         this.description = description;
     }
+
+//    public Date getCommentDate() {
+//        return commentDate;
+//    }
+//
+//    public void setCommentDate(Date commentDate) {
+//        this.commentDate = commentDate;
+//    }
 
     public Post getPost() {
         return post;
