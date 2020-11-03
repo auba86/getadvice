@@ -1,19 +1,23 @@
 package lt.auba.getadvice.controller;
 
+import lt.auba.getadvice.model.Role;
 import lt.auba.getadvice.model.User;
 import lt.auba.getadvice.repository.UserRepository;
+import lt.auba.getadvice.service.RoleService;
 import lt.auba.getadvice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.Set;
 
 @Controller
-@RequestMapping("/users")
+@RequestMapping("/")
 public class UserController {
 
     @Autowired
@@ -24,6 +28,22 @@ public class UserController {
         List<User> usersList = userService.getAllUsers();
         model.addAttribute("usersList", usersList);
         return "index";
+    }
+
+    @GetMapping("/showNewUserForm")
+    public String showNewUserForm(Model model) {
+        //create model attribute to bind form data
+        User user = new User();
+        model.addAttribute("user", user);
+        return "create_user";
+    }
+
+    @PostMapping("/saveNewUser")
+    public String saveNewUser(@ModelAttribute("user") User user){
+        userService.saveUserData(user);
+//        user.setUserRole(1L);
+//        userService.saveUserData(user);
+        return "redirect:/";
     }
 
 //    @GetMapping("/usersList")
