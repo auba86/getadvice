@@ -18,6 +18,9 @@ public class Post {
 
     private String description;
 
+    @Transient
+    private Long userId;
+
 //    private Date postDate;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
@@ -88,5 +91,13 @@ public class Post {
 
     public void setRating(Rating rating) {
         this.rating = rating;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

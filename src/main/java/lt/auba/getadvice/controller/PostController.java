@@ -3,6 +3,7 @@ package lt.auba.getadvice.controller;
 import lt.auba.getadvice.model.Post;
 import lt.auba.getadvice.model.User;
 import lt.auba.getadvice.service.PostService;
+import lt.auba.getadvice.service.UserService;
 import org.hibernate.query.criteria.internal.expression.function.CurrentDateFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,10 @@ public class PostController {
     @Autowired
     private PostService postService;
 
+    @Autowired
+    private UserService userService;
+
+
 //    @GetMapping("/newPostForm")
 //    public String newPostForm(Model model) {
 //        Post post = new Post();
@@ -28,9 +33,23 @@ public class PostController {
 //        return "create_post";
 //    }
 
-    @GetMapping("/newPostForm/{id}")
-    public String newPostForm2(Model model) {
+//    @GetMapping("/newPostForm/{id}")
+//    public String newPostForm(@PathVariable(value = "id") long id, Model model) {
+//
+////        User user = userService.getUserById(id);
+////        Long userId = user.getUserId();
+//
+//        Post post = new Post();
+//        //User user = userService.
+//        model.addAttribute("userId", id);
+//        model.addAttribute("post", post);
+//        return "create_post";
+//    }
+
+    @GetMapping("/newPostForm/{userId}")
+    public String newPostForm2(@PathVariable Long userId, Model model) {
         Post post = new Post();
+        post.setUserId(userId);
         model.addAttribute("post", post);
         return "create_post";
     }
@@ -43,10 +62,10 @@ public class PostController {
     }
 
     @PostMapping("/saveNewPost")
-    public String saveNewPost(@ModelAttribute("post") Post post){
-//        Date date = new Date();
-//        Date currDate = new Date(date.getTime());
-//        post.setPostDate(currDate);
+    public String saveNewPost(@ModelAttribute(value="post") Post post){
+        User user = new User();
+        user.setUserId(post.getUserId());
+        post.setUserPost(user);
         postService.saveNewPost(post);
         return "redirect:/";
     }

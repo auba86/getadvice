@@ -32,7 +32,7 @@
         <td th:text="${user.nickName}"></td>
         <td th:text="${user.email}"></td>
         <td>
-            <a th:href="@{/newPostForm/{id}(id=${user.userId})}" class="btn btn-primary">Add Post</a>
+            <a th:href="@{/newPostForm/{userId}(userId=${user.userId})}" class="btn btn-primary">Add Post</a>
         </td>
     </tr>
     </tbody>

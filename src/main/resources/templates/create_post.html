@@ -24,8 +24,8 @@
     <input type="text" th:field="*{description}"
            placeholder="Post Description" class="form-control mb-4 col-4">
 
-<!--    <input type="text" th:field="*{userId}"-->
-<!--           placeholder="User Id" class="form-control mb-4 col-4">-->
+<!--    <input type="hidden" name="userId" th:value="${id}"/>-->
+    <input type="text"  th:field="*{userId}" th:value="${userId}" />
 
 <!--    <input type="hidden" th:field="*{userId=${id}">-->
 
